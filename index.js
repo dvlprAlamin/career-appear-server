@@ -74,7 +74,10 @@ client.connect(err => {
             })
     })
     app.post('/checkApply', (req, res) => {
-        const applicationData = req.body;
+        const applicationData = {
+            jobId: req.body.jobId,
+            email: req.body.email
+        };
         jobApplicationCollection.find(applicationData)
             .toArray((error, documents) => {
                 res.send(documents.length > 0)
